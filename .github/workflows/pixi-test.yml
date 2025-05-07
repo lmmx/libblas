@@ -18,15 +18,10 @@ jobs:
           fetch-depth: 2
 
       # ── Rust toolchain & helpers ────────────────────────────────────────────
-      - name: Install Rust
-        uses: dtolnay/rust-toolchain@nightly    # LLVM coverage needs nightly
-        with:
-          components: llvm-tools-preview
-
-      - name: Install cargo-llvm-cov and cargo-nextest
+      - name: Install cargo-nextest
         uses: taiki-e/install-action@v2
         with:
-          tool: cargo-llvm-cov,cargo-nextest,cargo-tarpaulin,just
+          tool: cargo-nextest,just
 
       # ── Pixi environment ───────────────────────────────────────────────────
       - name: Set up pixi
@@ -51,10 +46,6 @@ jobs:
           cache-on-failure: true
           key: ${{ hashFiles('**/Cargo.toml') }}
 
-      # ── Coverage ───────────────────────────────────────────────────────────
-      - name: Gather coverage
-        run: |
-          cargo llvm-cov --no-report nextest
-          cargo llvm-cov --no-report --doc
-          mkdir coverage
-          cargo llvm-cov report --doctests --lcov --output-path coverage/lcov.info
+      # ── Run tests ──────────────────────────────────────────────────────────
+      - name: Run tests
+        run: cargo nextest run

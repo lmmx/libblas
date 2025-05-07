@@ -71,7 +71,7 @@ fix-eof-ws mode="":
           --normalize-new-line-markers \
           --exclude ".git/|.pixi/|dist/|.venv/|.*_cache|target/|.json$|.lock|.sw[op]$" \
           $ARGS \
-          .
+          $(fd -H -E ".pixi/")
 
 code-quality:
     taplo lint
