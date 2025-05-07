@@ -10,6 +10,12 @@ env | grep CONDA
 export CONDA_ROOT=${CONDA_ROOT:-$CONDA}
 : ${CONDA_ROOT:?CONDA_ROOT could not be set from CONDA_ROOT nor CONDA env var}
 
+# Debug: Find the json-fortran package by searching for the library file
+echo "Searching for libjsonfortran.so in conda directories..."
+FOUND_PATHS=$(find $CONDA_ROOT -name "libjsonfortran.so" -type f 2>/dev/null)
+echo "Found libjsonfortran.so in these locations:"
+echo "$FOUND_PATHS"
+
 # Find json-fortran package directory
 JSON_PKG_DIR=$(ls -d $CONDA_ROOT/pkgs/json-fortran-* 2>/dev/null | head -n 1)
 : ${JSON_PKG_DIR:?Error: json-fortran package not found under $CONDA_ROOT/pkgs}
