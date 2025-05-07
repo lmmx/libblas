@@ -10,7 +10,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     env:
-      CONDA_PKGS_DIR: ~/conda_pkgs_dir
+      CONDA_PKGS_DIR: ${{ env.HOME }}/conda_pkgs_dir
     steps:
       - uses: actions/checkout@v4
       
@@ -29,7 +29,7 @@ jobs:
         env:
           CACHE_NUMBER: 0 # Increment to reset cache if needed
         with:
-          path: ~/conda_pkgs_dir
+          path: ${{ env.HOME }}/conda_pkgs_dir
           key: ${{ runner.os }}-conda-${{ env.CACHE_NUMBER }}-json-fortran
 
       - name: Set up Conda
