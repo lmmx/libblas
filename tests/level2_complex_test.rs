@@ -1480,7 +1480,6 @@ fn hemv() {
 fn her() {
     let mut a = matrix::complex::slice(fixtures::complex::matrix_mxn(6, 8), 6, 1, 6, 1, 6);
     matrix::complex::set_lower(&mut a, 6, 6, 0.0);
-;
     let x = vec![
         Complex::new(-0.6490100777088978, 0.7721421858045301),
         Complex::new(0.0, 0.0),
@@ -3581,7 +3580,6 @@ fn trmv() {
 
     let mut a = matrix::complex::slice(fixtures::complex::matrix_mxn(6, 6), 6, 1, 6, 1, 6);
     matrix::complex::set_lower(&mut a, 6, 6, 0.0);
-;
     let mut x = vec![
         Complex::new(-0.6490100777088978, 0.7721421858045301),
         Complex::new(-0.11916876241803812, -0.21951562675343952),
@@ -3605,7 +3603,6 @@ fn trmv() {
 
     let mut a = matrix::complex::slice(fixtures::complex::matrix_mxn(6, 6), 6, 1, 6, 1, 6);
     matrix::complex::set_lower(&mut a, 6, 6, 0.0);
-;
     let mut x = vec![
         Complex::new(-0.6490100777088978, 0.7721421858045301),
         Complex::new(-0.11916876241803812, -0.21951562675343952),
@@ -3674,7 +3671,6 @@ fn trmv() {
 
     let mut a = matrix::complex::slice(fixtures::complex::matrix_mxn(6, 6), 6, 1, 6, 1, 6);
     matrix::complex::set_lower(&mut a, 6, 6, 0.0);
-;
     let mut x = vec![
         Complex::new(-0.6490100777088978, 0.7721421858045301),
         Complex::new(-0.11916876241803812, -0.21951562675343952),
@@ -3813,7 +3809,6 @@ fn trmv() {
 fn trsv() {
     let mut a = matrix::complex::slice(fixtures::complex::matrix_mxn(6, 8), 6, 1, 6, 1, 6);
     matrix::complex::set_lower(&mut a, 6, 6, 0.0);
-;
     let mut x = vec![
         Complex::new(-0.6490100777088978, 0.7721421858045301),
         Complex::new(-0.11916876241803812, -0.21951562675343952),
@@ -3902,7 +3897,6 @@ fn trsv() {
 
     let mut a = matrix::complex::slice(fixtures::complex::matrix_mxn(6, 8), 6, 1, 6, 1, 6);
     matrix::complex::set_lower(&mut a, 6, 6, 0.0);
-;
     let mut x = vec![
         Complex::new(0.0, 0.0),
         Complex::new(-0.11916876241803812, -0.21951562675343952),
@@ -3991,7 +3985,6 @@ fn trsv() {
     );
     let mut a = matrix::complex::slice(fixtures::complex::matrix_mxn(6, 8), 6, 1, 6, 1, 6);
     matrix::complex::set_lower(&mut a, 6, 6, 0.0);
-;
     let mut x = vec![
         Complex::new(0.0, 0.0),
         Complex::new(-0.11916876241803812, -0.21951562675343952),
