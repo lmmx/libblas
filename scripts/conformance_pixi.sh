@@ -2,12 +2,12 @@
 set -euo pipefail
 set -x
 
-# ── Locate the active pixi prefix ------------------------------------------------
-PIXI_PREFIX="$(pixi info --json | jq -r .global_info.env_dir)/default"
-test -d "$PIXI_PREFIX" || { echo "pixi directory not found"; exit 1; }
+# ── Locate the active pixi "conda" prefix ----------------------------------------
+: ${CONDA_PREFIX:?CONDA_PREFIX could not be set from CONDA_PREFIX env var}
+test -d "$CONDA_PREFIX" || { echo "pixi directory not found"; exit 1; }
 
-LIB_DIR="$PIXI_PREFIX/lib"
-INC_DIR="$PIXI_PREFIX/include"
+LIB_DIR="$CONDA_PREFIX/lib"
+INC_DIR="$CONDA_PREFIX/include"
 LIB_JSON="$LIB_DIR/libjsonfortran.so"
 
 if [[ ! -f "$LIB_JSON" ]]; then
