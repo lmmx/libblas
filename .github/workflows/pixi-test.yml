@@ -35,7 +35,7 @@ jobs:
      # ── Cache fixtures ────────────────────────────────────────────────────
       - name: Cache BLAS conformance fixtures
         id: cache-fixtures
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: |
             ./tests/fixtures/level1
