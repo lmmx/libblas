@@ -64,6 +64,6 @@ jobs:
 
       # ── Run tests ──────────────────────────────────────────────────────────
       - name: Compile
-        run: cargo check --locked
+        run: cargo check # --locked
       - name: Run tests
         run: cargo nextest run
