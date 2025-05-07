@@ -32,7 +32,11 @@ bench:
 bench-exec:
     ./bench/bench_execution_only.py
 
+gen-conform:
+    test -f "tests/fixtures/level1/dot.json" || bash -l scripts/conformance.sh
+
 test *args:
+    just gen-conform
     cargo nextest run {{args}} < /dev/null
 
 test-ci *args:

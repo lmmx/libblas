@@ -20,7 +20,7 @@ jobs:
       - name: Install cargo-llvm-cov and cargo-nextest
         uses: taiki-e/install-action@v2
         with:
-          tool: cargo-llvm-cov,cargo-nextest,cargo-tarpaulin
+          tool: cargo-llvm-cov,cargo-nextest,cargo-tarpaulin,just
 
       - name: Set up Conda
         uses: conda-incubator/setup-miniconda@v3
@@ -30,6 +30,10 @@ jobs:
       - name: Install Conda dependencies
         shell: bash -l {0}
         run: conda install --channel conda-forge json-fortran
+          
+      - name: Generate conformance files
+        shell: bash -l {0}
+        run: just gen-conform
       
       - name: Cache setup
         uses: Swatinem/rust-cache@v2

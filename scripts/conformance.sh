@@ -3,9 +3,9 @@ DCABS1=./tests/conformance/_shared/dcabs1.f
 XERBLA=./tests/conformance/_shared/xerbla.f
 LSAME=./tests/conformance/_shared/lsame.f
 # Add the library path for runtime loading
-export LD_LIBRARY_PATH=$HOME/miniconda3/pkgs/json-fortran-9.0.3-hc062a8b_0/lib:$LD_LIBRARY_PATH
-test -d $HOME/miniconda3/pkgs/json-fortran-9.0.3-hc062a8b_0/lib && L=$HOME/miniconda3/pkgs/json-fortran-9.0.3-hc062a8b_0/lib/libjsonfortran.so
-test -d $HOME/miniconda3/pkgs/json-fortran-9.0.3-hc062a8b_0/include && I=-I$HOME/miniconda3/pkgs/json-fortran-9.0.3-hc062a8b_0/include
+export LD_LIBRARY_PATH=$CONDA_ROOT/pkgs/json-fortran-9.0.3-hc062a8b_0/lib:$LD_LIBRARY_PATH
+test -d $CONDA_ROOT/pkgs/json-fortran-9.0.3-hc062a8b_0/lib && L=$CONDA_ROOT/pkgs/json-fortran-9.0.3-hc062a8b_0/lib/libjsonfortran.so
+test -d $CONDA_ROOT/pkgs/json-fortran-9.0.3-hc062a8b_0/include && I=-I$CONDA_ROOT/pkgs/json-fortran-9.0.3-hc062a8b_0/include
 test -d $HOME/json-fortran/build/lib && L=$HOME/json-fortran/build/lib/libjsonfortran.so || L=$HOME/miniconda3/pkgs/json-fortran-9.0.3-hc062a8b_0/lib/libjsonfortran.so
 test -d $HOME/json-fortran/build/include && I=-I$HOME/json-fortran/build/include || I=-I$HOME/miniconda3/pkgs/json-fortran-9.0.3-hc062a8b_0/include
 # test -d ./jsonfortran-gnu-7.0.0 && L=./jsonfortran-gnu-7.0.0/lib/libjsonfortran.a
