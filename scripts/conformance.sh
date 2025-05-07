@@ -4,7 +4,7 @@ DCABS1=./tests/conformance/_shared/dcabs1.f
 XERBLA=./tests/conformance/_shared/xerbla.f
 LSAME=./tests/conformance/_shared/lsame.f
 
-env | grep CONDA
+env | grep '^CONDA'
 
 # Use existing CONDA_ROOT if set, otherwise set from CONDA_EXE
 export CONDA_ROOT=${CONDA_ROOT:-$CONDA}
