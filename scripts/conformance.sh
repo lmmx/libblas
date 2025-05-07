@@ -4,6 +4,8 @@ DCABS1=./tests/conformance/_shared/dcabs1.f
 XERBLA=./tests/conformance/_shared/xerbla.f
 LSAME=./tests/conformance/_shared/lsame.f
 
+env | grep CONDA
+
 # Use existing CONDA_ROOT if set, otherwise set from CONDA_EXE
 export CONDA_ROOT=${CONDA_ROOT:-$CONDA}
 : ${CONDA_ROOT:?CONDA_ROOT could not be set from CONDA_ROOT nor CONDA env var}
@@ -11,6 +13,7 @@ export CONDA_ROOT=${CONDA_ROOT:-$CONDA}
 # Find json-fortran package directory
 JSON_PKG_DIR=$(ls -d $CONDA_ROOT/pkgs/json-fortran-* 2>/dev/null | head -n 1)
 : ${JSON_PKG_DIR:?Error: json-fortran package not found under $CONDA_ROOT/pkgs}
+echo "Found JSON_PKG_DIR $JSON_PKG_DIR"
 
 # Check both lib and include directories exist
 test -d "$JSON_PKG_DIR/lib" || { echo "Error: Library directory not found at $JSON_PKG_DIR/lib"; exit 1; }
