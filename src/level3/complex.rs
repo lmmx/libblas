@@ -1930,7 +1930,7 @@ pub fn herk<T: Float + NumAssignOps>(
                         c[(cj as isize + i) as usize] += tmp * a[(al as isize + i) as usize];
                         i += 1;
                     }
-                    let mut ct = c[cj + j] + tmp * a[al + j];;
+                    let mut ct = c[cj + j] + tmp * a[al + j];
                     ct.im = T::zero();
                     c[cj + j] = ct;
                 }
