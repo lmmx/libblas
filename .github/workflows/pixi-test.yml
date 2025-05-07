@@ -32,6 +32,24 @@ jobs:
           cache-write: ${{ github.ref == 'refs/heads/master' }}
           log-level: vv
 
+     # ── Cache fixtures ────────────────────────────────────────────────────
+      - name: Cache BLAS conformance fixtures
+        id: cache-fixtures
+        uses: actions/cache@v3
+        with:
+          path: |
+            ./tests/fixtures/level1
+            ./tests/fixtures/level2
+            ./tests/fixtures/level3
+            ./tests/fixtures/matrix
+          key: ${{ runner.os }}-fixtures-${{ hashFiles('./tests/conformance/**/*', 'scripts/conformance_pixi.sh') }}
+
+      # ── Generate fixtures if needed ─────────────────────────────────────────
+      - name: Generate conformance files
+        if: steps.cache-fixtures.outputs.cache-hit != 'true'
+        shell: bash -l {0}
+        run: just gen-conform-pixi
+
       # ── Build conformance fixtures (inside pixi env) ───────────────────────
       - name: Generate conformance files
         shell: bash -l {0}
