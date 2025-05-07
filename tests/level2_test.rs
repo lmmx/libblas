@@ -70,78 +70,22 @@ fn gbmv() {
     assert_eq!(y, vec![-1.0, 1.0, -1.0, 1.0, 1.0, 2.0]);
 
     let result = std::panic::catch_unwind(|| {
-        level2::gbmv(
-            'x',
-            6,
-            9,
-            1,
-            1,
-            1.5,
-            &[],
-            3,
-            &[],
-            1,
-            2.5,
-            &mut [],
-            1,
-        )
+        level2::gbmv('x', 6, 9, 1, 1, 1.5, &[], 3, &[], 1, 2.5, &mut [], 1)
     });
     assert!(result.is_err());
 
     let result = std::panic::catch_unwind(|| {
-        level2::gbmv(
-            'n',
-            6,
-            1,
-            1,
-            1,
-            1.5,
-            &[],
-            2,
-            &[],
-            1,
-            2.5,
-            &mut [],
-            1,
-        )
+        level2::gbmv('n', 6, 1, 1, 1, 1.5, &[], 2, &[], 1, 2.5, &mut [], 1)
     });
     assert!(result.is_err());
 
     let result = std::panic::catch_unwind(|| {
-        level2::gbmv(
-            'n',
-            6,
-            1,
-            1,
-            1,
-            1.5,
-            &[],
-            3,
-            &[],
-            1,
-            2.5,
-            &mut [],
-            0,
-        )
+        level2::gbmv('n', 6, 1, 1, 1, 1.5, &[], 3, &[], 1, 2.5, &mut [], 0)
     });
     assert!(result.is_err());
 
     let result = std::panic::catch_unwind(|| {
-        level2::gbmv(
-            'n',
-            6,
-            1,
-            1,
-            1,
-            1.5,
-            &[],
-            3,
-            &[],
-            0,
-            2.5,
-            &mut [],
-            1,
-        )
+        level2::gbmv('n', 6, 1, 1, 1, 1.5, &[], 3, &[], 0, 2.5, &mut [], 1)
     });
     assert!(result.is_err());
 }
@@ -292,35 +236,20 @@ fn gemv() {
     );
 
     let result = std::panic::catch_unwind(|| {
-        level2::gemv(
-            'x',
-            3,
-            4,
-            1.0,
-            &[],
-            6,
-            &[],
-            -2,
-            0.0,
-            &mut [],
-            -2,
-        )
+        level2::gemv('x', 3, 4, 1.0, &[], 6, &[], -2, 0.0, &mut [], -2)
     });
     assert!(result.is_err());
 
-    let result = std::panic::catch_unwind(|| {
-        level2::gemv('t', 1, 7, 0.0, &[], 6, &[], 1, 0.0, &mut [], 1)
-    });
+    let result =
+        std::panic::catch_unwind(|| level2::gemv('t', 1, 7, 0.0, &[], 6, &[], 1, 0.0, &mut [], 1));
     assert!(result.is_err());
 
-    let result = std::panic::catch_unwind(|| {
-        level2::gemv('t', 1, 7, 0.0, &[], 7, &[], 0, 0.0, &mut [], 1)
-    });
+    let result =
+        std::panic::catch_unwind(|| level2::gemv('t', 1, 7, 0.0, &[], 7, &[], 0, 0.0, &mut [], 1));
     assert!(result.is_err());
 
-    let result = std::panic::catch_unwind(|| {
-        level2::gemv('t', 1, 7, 0.0, &[], 7, &[], 1, 0.0, &mut [], 0)
-    });
+    let result =
+        std::panic::catch_unwind(|| level2::gemv('t', 1, 7, 0.0, &[], 7, &[], 1, 0.0, &mut [], 0));
     assert!(result.is_err());
 }
 
@@ -591,16 +520,13 @@ fn ger() {
         1E-7
     );
 
-    let result =
-        std::panic::catch_unwind(|| level2::ger(3, 2, 1.0, &[], 2, &[], 2, &mut [], 2));
+    let result = std::panic::catch_unwind(|| level2::ger(3, 2, 1.0, &[], 2, &[], 2, &mut [], 2));
     assert!(result.is_err());
 
-    let result =
-        std::panic::catch_unwind(|| level2::ger(3, 2, 1.0, &[], 0, &[], 2, &mut [], 5));
+    let result = std::panic::catch_unwind(|| level2::ger(3, 2, 1.0, &[], 0, &[], 2, &mut [], 5));
     assert!(result.is_err());
 
-    let result =
-        std::panic::catch_unwind(|| level2::ger(3, 2, 1.0, &[], 2, &[], 0, &mut [], 5));
+    let result = std::panic::catch_unwind(|| level2::ger(3, 2, 1.0, &[], 2, &[], 0, &mut [], 5));
     assert!(result.is_err());
 }
 
@@ -834,24 +760,20 @@ fn sbmv() {
     level2::sbmv('l', 6, 5, 0.0, &a, 6, &x, 1, 0.0, &mut y, 1);
     assert_eq!(y, vec![0.0, 0.0, 0.0, 0.0, 0.0, 0.0]);
 
-    let result = std::panic::catch_unwind(|| {
-        level2::sbmv('x', 6, 5, 0.0, &[], 6, &[], 1, 0.0, &mut [], 1)
-    });
+    let result =
+        std::panic::catch_unwind(|| level2::sbmv('x', 6, 5, 0.0, &[], 6, &[], 1, 0.0, &mut [], 1));
     assert!(result.is_err());
 
-    let result = std::panic::catch_unwind(|| {
-        level2::sbmv('l', 1, 7, 0.0, &[], 6, &[], 1, 0.0, &mut [], 1)
-    });
+    let result =
+        std::panic::catch_unwind(|| level2::sbmv('l', 1, 7, 0.0, &[], 6, &[], 1, 0.0, &mut [], 1));
     assert!(result.is_err());
 
-    let result = std::panic::catch_unwind(|| {
-        level2::sbmv('l', 1, 3, 0.0, &[], 6, &[], 0, 0.0, &mut [], 1)
-    });
+    let result =
+        std::panic::catch_unwind(|| level2::sbmv('l', 1, 3, 0.0, &[], 6, &[], 0, 0.0, &mut [], 1));
     assert!(result.is_err());
 
-    let result = std::panic::catch_unwind(|| {
-        level2::sbmv('l', 1, 3, 0.0, &[], 6, &[], 1, 0.0, &mut [], 0)
-    });
+    let result =
+        std::panic::catch_unwind(|| level2::sbmv('l', 1, 3, 0.0, &[], 6, &[], 1, 0.0, &mut [], 0));
     assert!(result.is_err());
 }
 
@@ -980,29 +902,24 @@ fn spmv() {
         ]
     );
 
-    let result = std::panic::catch_unwind(|| {
-        level2::spmv('x', 8, 0.0, &[], &[], 1, 0.0, &mut [], 1)
-    });
+    let result =
+        std::panic::catch_unwind(|| level2::spmv('x', 8, 0.0, &[], &[], 1, 0.0, &mut [], 1));
     assert!(result.is_err());
 
-    let result = std::panic::catch_unwind(|| {
-        level2::spmv('l', 8, 0.0, &[], &[], 0, 0.0, &mut [], 1)
-    });
+    let result =
+        std::panic::catch_unwind(|| level2::spmv('l', 8, 0.0, &[], &[], 0, 0.0, &mut [], 1));
     assert!(result.is_err());
 
-    let result = std::panic::catch_unwind(|| {
-        level2::spmv('l', 8, 0.0, &[], &[], 1, 0.0, &mut [], 0)
-    });
+    let result =
+        std::panic::catch_unwind(|| level2::spmv('l', 8, 0.0, &[], &[], 1, 0.0, &mut [], 0));
     assert!(result.is_err());
 
-    let result = std::panic::catch_unwind(|| {
-        level2::spmv('x', 8, 0.0, &[], &[], 0, 0.0, &mut [], 1)
-    });
+    let result =
+        std::panic::catch_unwind(|| level2::spmv('x', 8, 0.0, &[], &[], 0, 0.0, &mut [], 1));
     assert!(result.is_err());
 
-    let result = std::panic::catch_unwind(|| {
-        level2::spmv('x', 8, 0.0, &[], &[], 1, 0.0, &mut [], 0)
-    });
+    let result =
+        std::panic::catch_unwind(|| level2::spmv('x', 8, 0.0, &[], &[], 1, 0.0, &mut [], 0));
     assert!(result.is_err());
 }
 
@@ -1368,16 +1285,13 @@ fn spr2() {
     level2::spr2('u', 8, 0.0, &x, -1, &y, -1, &mut ap);
     assert_eq!(ap, fixtures::MSP8X8());
 
-    let result =
-        std::panic::catch_unwind(|| level2::spr2('x', 8, 1.0, &[], 1, &[], 1, &mut []));
+    let result = std::panic::catch_unwind(|| level2::spr2('x', 8, 1.0, &[], 1, &[], 1, &mut []));
     assert!(result.is_err());
 
-    let result =
-        std::panic::catch_unwind(|| level2::spr2('l', 8, 1.0, &[], 0, &[], 1, &mut []));
+    let result = std::panic::catch_unwind(|| level2::spr2('l', 8, 1.0, &[], 0, &[], 1, &mut []));
     assert!(result.is_err());
 
-    let result =
-        std::panic::catch_unwind(|| level2::spr2('l', 8, 1.0, &[], 1, &[], 0, &mut []));
+    let result = std::panic::catch_unwind(|| level2::spr2('l', 8, 1.0, &[], 1, &[], 0, &mut []));
     assert!(result.is_err());
 }
 
@@ -1497,24 +1411,20 @@ fn symv() {
         ]
     );
     let a = vec![];
-    let result = std::panic::catch_unwind(|| {
-        level2::symv('x', 6, 0.5, &a, 6, &[], -1, 1.0, &mut [], -1)
-    });
+    let result =
+        std::panic::catch_unwind(|| level2::symv('x', 6, 0.5, &a, 6, &[], -1, 1.0, &mut [], -1));
     assert!(result.is_err());
 
-    let result = std::panic::catch_unwind(|| {
-        level2::symv('l', 7, 0.5, &a, 6, &[], -1, 1.0, &mut [], -1)
-    });
+    let result =
+        std::panic::catch_unwind(|| level2::symv('l', 7, 0.5, &a, 6, &[], -1, 1.0, &mut [], -1));
     assert!(result.is_err());
 
-    let result = std::panic::catch_unwind(|| {
-        level2::symv('l', 7, 0.5, &a, 7, &[], 0, 1.0, &mut [], -1)
-    });
+    let result =
+        std::panic::catch_unwind(|| level2::symv('l', 7, 0.5, &a, 7, &[], 0, 1.0, &mut [], -1));
     assert!(result.is_err());
 
-    let result = std::panic::catch_unwind(|| {
-        level2::symv('l', 7, 0.5, &a, 7, &[], 4, 1.0, &mut [], 0)
-    });
+    let result =
+        std::panic::catch_unwind(|| level2::symv('l', 7, 0.5, &a, 7, &[], 4, 1.0, &mut [], 0));
     assert!(result.is_err());
 }
 
@@ -1943,24 +1853,18 @@ fn syr2() {
     level2::syr2('u', 0, 1.0, &x, -1, &y, -1, &mut a, 6);
     assert_eq!(a, fixtures::M6X6U().to_vec());
 
-    let result = std::panic::catch_unwind(|| {
-        level2::syr2('x', 6, 1.0, &[], -1, &[], -1, &mut [], 6)
-    });
+    let result =
+        std::panic::catch_unwind(|| level2::syr2('x', 6, 1.0, &[], -1, &[], -1, &mut [], 6));
     assert!(result.is_err());
 
-    let result = std::panic::catch_unwind(|| {
-        level2::syr2('l', 0, 1.0, &[], 0, &[], 1, &mut [], 6)
-    });
+    let result = std::panic::catch_unwind(|| level2::syr2('l', 0, 1.0, &[], 0, &[], 1, &mut [], 6));
     assert!(result.is_err());
 
-    let result = std::panic::catch_unwind(|| {
-        level2::syr2('l', 0, 1.0, &[], 1, &[], 0, &mut [], 6)
-    });
+    let result = std::panic::catch_unwind(|| level2::syr2('l', 0, 1.0, &[], 1, &[], 0, &mut [], 6));
     assert!(result.is_err());
 
-    let result = std::panic::catch_unwind(|| {
-        level2::syr2('l', 10, 1.0, &[], 1, &[], 1, &mut [], 6)
-    });
+    let result =
+        std::panic::catch_unwind(|| level2::syr2('l', 10, 1.0, &[], 1, &[], 1, &mut [], 6));
     assert!(result.is_err());
 }
 
@@ -2168,29 +2072,24 @@ fn tbmv() {
         1E-6
     );
 
-    let result = std::panic::catch_unwind(|| {
-        level2::tbmv('x', 'n', 'n', 6, 5, &[0.0], 6, &mut [], 1)
-    });
+    let result =
+        std::panic::catch_unwind(|| level2::tbmv('x', 'n', 'n', 6, 5, &[0.0], 6, &mut [], 1));
     assert!(result.is_err());
 
-    let result = std::panic::catch_unwind(|| {
-        level2::tbmv('l', 'x', 'n', 6, 5, &[0.0], 6, &mut [], 1)
-    });
+    let result =
+        std::panic::catch_unwind(|| level2::tbmv('l', 'x', 'n', 6, 5, &[0.0], 6, &mut [], 1));
     assert!(result.is_err());
 
-    let result = std::panic::catch_unwind(|| {
-        level2::tbmv('l', 't', 'x', 6, 5, &[0.0], 6, &mut [], 1)
-    });
+    let result =
+        std::panic::catch_unwind(|| level2::tbmv('l', 't', 'x', 6, 5, &[0.0], 6, &mut [], 1));
     assert!(result.is_err());
 
-    let result = std::panic::catch_unwind(|| {
-        level2::tbmv('l', 't', 'n', 6, 5, &[0.0], 4, &mut [], 1)
-    });
+    let result =
+        std::panic::catch_unwind(|| level2::tbmv('l', 't', 'n', 6, 5, &[0.0], 4, &mut [], 1));
     assert!(result.is_err());
 
-    let result = std::panic::catch_unwind(|| {
-        level2::tbmv('l', 't', 'n', 6, 5, &[0.0], 6, &mut [], 0)
-    });
+    let result =
+        std::panic::catch_unwind(|| level2::tbmv('l', 't', 'n', 6, 5, &[0.0], 6, &mut [], 0));
     assert!(result.is_err());
 }
 
@@ -2396,29 +2295,24 @@ fn tbsv() {
         1E-5
     );
 
-    let result = std::panic::catch_unwind(|| {
-        level2::tbsv('x', 'n', 'n', 6, 5, &[0.0], 6, &mut [], 1)
-    });
+    let result =
+        std::panic::catch_unwind(|| level2::tbsv('x', 'n', 'n', 6, 5, &[0.0], 6, &mut [], 1));
     assert!(result.is_err());
 
-    let result = std::panic::catch_unwind(|| {
-        level2::tbsv('l', 'x', 'n', 6, 5, &[0.0], 6, &mut [], 1)
-    });
+    let result =
+        std::panic::catch_unwind(|| level2::tbsv('l', 'x', 'n', 6, 5, &[0.0], 6, &mut [], 1));
     assert!(result.is_err());
 
-    let result = std::panic::catch_unwind(|| {
-        level2::tbsv('l', 't', 'x', 6, 5, &[0.0], 6, &mut [], 1)
-    });
+    let result =
+        std::panic::catch_unwind(|| level2::tbsv('l', 't', 'x', 6, 5, &[0.0], 6, &mut [], 1));
     assert!(result.is_err());
 
-    let result = std::panic::catch_unwind(|| {
-        level2::tbsv('l', 't', 'n', 6, 5, &[0.0], 4, &mut [], 1)
-    });
+    let result =
+        std::panic::catch_unwind(|| level2::tbsv('l', 't', 'n', 6, 5, &[0.0], 4, &mut [], 1));
     assert!(result.is_err());
 
-    let result = std::panic::catch_unwind(|| {
-        level2::tbsv('l', 't', 'n', 6, 5, &[0.0], 6, &mut [], 0)
-    });
+    let result =
+        std::panic::catch_unwind(|| level2::tbsv('l', 't', 'n', 6, 5, &[0.0], 6, &mut [], 0));
     assert!(result.is_err());
 }
 
@@ -2668,20 +2562,16 @@ fn tpsv() {
         1E-5
     );
 
-    let result =
-        std::panic::catch_unwind(|| level2::tpsv('x', 'n', 'n', 6, &[], &mut [0.0], 1));
+    let result = std::panic::catch_unwind(|| level2::tpsv('x', 'n', 'n', 6, &[], &mut [0.0], 1));
     assert!(result.is_err());
 
-    let result =
-        std::panic::catch_unwind(|| level2::tpsv('l', 'x', 'n', 6, &[], &mut [0.0], 1));
+    let result = std::panic::catch_unwind(|| level2::tpsv('l', 'x', 'n', 6, &[], &mut [0.0], 1));
     assert!(result.is_err());
 
-    let result =
-        std::panic::catch_unwind(|| level2::tpsv('l', 't', 'x', 6, &[], &mut [0.0], 1));
+    let result = std::panic::catch_unwind(|| level2::tpsv('l', 't', 'x', 6, &[], &mut [0.0], 1));
     assert!(result.is_err());
 
-    let result =
-        std::panic::catch_unwind(|| level2::tpsv('l', 't', 'n', 6, &[], &mut [0.0], 0));
+    let result = std::panic::catch_unwind(|| level2::tpsv('l', 't', 'n', 6, &[], &mut [0.0], 0));
     assert!(result.is_err());
 }
 
@@ -2909,20 +2799,16 @@ fn tpmv() {
         1E-5
     );
 
-    let result =
-        std::panic::catch_unwind(|| level2::tpmv('x', 'n', 'n', 6, &[], &mut [0.0], 1));
+    let result = std::panic::catch_unwind(|| level2::tpmv('x', 'n', 'n', 6, &[], &mut [0.0], 1));
     assert!(result.is_err());
 
-    let result =
-        std::panic::catch_unwind(|| level2::tpmv('l', 'x', 'n', 6, &[], &mut [0.0], 1));
+    let result = std::panic::catch_unwind(|| level2::tpmv('l', 'x', 'n', 6, &[], &mut [0.0], 1));
     assert!(result.is_err());
 
-    let result =
-        std::panic::catch_unwind(|| level2::tpmv('l', 't', 'x', 6, &[], &mut [0.0], 1));
+    let result = std::panic::catch_unwind(|| level2::tpmv('l', 't', 'x', 6, &[], &mut [0.0], 1));
     assert!(result.is_err());
 
-    let result =
-        std::panic::catch_unwind(|| level2::tpmv('l', 't', 'n', 6, &[], &mut [0.0], 0));
+    let result = std::panic::catch_unwind(|| level2::tpmv('l', 't', 'n', 6, &[], &mut [0.0], 0));
     assert!(result.is_err());
 }
 
@@ -3130,24 +3016,19 @@ fn trmv() {
         1E-5
     );
 
-    let result =
-        std::panic::catch_unwind(|| level2::trmv('x', 'n', 'n', 6, &[0.0], 6, &mut [], 1));
+    let result = std::panic::catch_unwind(|| level2::trmv('x', 'n', 'n', 6, &[0.0], 6, &mut [], 1));
     assert!(result.is_err());
 
-    let result =
-        std::panic::catch_unwind(|| level2::trmv('l', 'x', 'n', 6, &[0.0], 6, &mut [], 1));
+    let result = std::panic::catch_unwind(|| level2::trmv('l', 'x', 'n', 6, &[0.0], 6, &mut [], 1));
     assert!(result.is_err());
 
-    let result =
-        std::panic::catch_unwind(|| level2::trmv('l', 't', 'x', 6, &[0.0], 6, &mut [], 1));
+    let result = std::panic::catch_unwind(|| level2::trmv('l', 't', 'x', 6, &[0.0], 6, &mut [], 1));
     assert!(result.is_err());
 
-    let result =
-        std::panic::catch_unwind(|| level2::trmv('l', 't', 'n', 6, &[0.0], 6, &mut [], 0));
+    let result = std::panic::catch_unwind(|| level2::trmv('l', 't', 'n', 6, &[0.0], 6, &mut [], 0));
     assert!(result.is_err());
 
-    let result =
-        std::panic::catch_unwind(|| level2::trmv('l', 't', 'n', 6, &[0.0], 5, &mut [], 1));
+    let result = std::panic::catch_unwind(|| level2::trmv('l', 't', 'n', 6, &[0.0], 5, &mut [], 1));
     assert!(result.is_err());
 }
 
@@ -3353,23 +3234,18 @@ fn trsv() {
         ],
         1E-4
     );
-    let result =
-        std::panic::catch_unwind(|| level2::trsv('x', 'n', 'n', 6, &[0.0], 6, &mut [], 1));
+    let result = std::panic::catch_unwind(|| level2::trsv('x', 'n', 'n', 6, &[0.0], 6, &mut [], 1));
     assert!(result.is_err());
 
-    let result =
-        std::panic::catch_unwind(|| level2::trsv('l', 'x', 'n', 6, &[0.0], 6, &mut [], 1));
+    let result = std::panic::catch_unwind(|| level2::trsv('l', 'x', 'n', 6, &[0.0], 6, &mut [], 1));
     assert!(result.is_err());
 
-    let result =
-        std::panic::catch_unwind(|| level2::trsv('l', 't', 'x', 6, &[0.0], 6, &mut [], 1));
+    let result = std::panic::catch_unwind(|| level2::trsv('l', 't', 'x', 6, &[0.0], 6, &mut [], 1));
     assert!(result.is_err());
 
-    let result =
-        std::panic::catch_unwind(|| level2::trsv('l', 't', 'n', 6, &[0.0], 4, &mut [], 1));
+    let result = std::panic::catch_unwind(|| level2::trsv('l', 't', 'n', 6, &[0.0], 4, &mut [], 1));
     assert!(result.is_err());
 
-    let result =
-        std::panic::catch_unwind(|| level2::trsv('l', 't', 'n', 6, &[0.0], 6, &mut [], 0));
+    let result = std::panic::catch_unwind(|| level2::trsv('l', 't', 'n', 6, &[0.0], 6, &mut [], 0));
     assert!(result.is_err());
 }

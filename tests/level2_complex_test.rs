@@ -675,47 +675,17 @@ fn gerc() {
     capproximately!(a, expect);
 
     let result = std::panic::catch_unwind(|| {
-        complex::gerc(
-            6,
-            8,
-            Complex::new(0.0, 0.0),
-            &[],
-            1,
-            &[],
-            1,
-            &mut [],
-            2,
-        )
+        complex::gerc(6, 8, Complex::new(0.0, 0.0), &[], 1, &[], 1, &mut [], 2)
     });
     assert!(result.is_err());
 
     let result = std::panic::catch_unwind(|| {
-        complex::gerc(
-            6,
-            8,
-            Complex::new(0.0, 0.0),
-            &[],
-            0,
-            &[],
-            1,
-            &mut [],
-            6,
-        )
+        complex::gerc(6, 8, Complex::new(0.0, 0.0), &[], 0, &[], 1, &mut [], 6)
     });
     assert!(result.is_err());
 
     let result = std::panic::catch_unwind(|| {
-        complex::gerc(
-            6,
-            8,
-            Complex::new(0.0, 0.0),
-            &[],
-            1,
-            &[],
-            0,
-            &mut [],
-            6,
-        )
+        complex::gerc(6, 8, Complex::new(0.0, 0.0), &[], 1, &[], 0, &mut [], 6)
     });
     assert!(result.is_err());
 }
@@ -881,47 +851,17 @@ fn geru() {
     capproximately!(a, expect);
 
     let result = std::panic::catch_unwind(|| {
-        complex::geru(
-            6,
-            8,
-            Complex::new(0.0, 0.0),
-            &[],
-            1,
-            &[],
-            1,
-            &mut [],
-            2,
-        )
+        complex::geru(6, 8, Complex::new(0.0, 0.0), &[], 1, &[], 1, &mut [], 2)
     });
     assert!(result.is_err());
 
     let result = std::panic::catch_unwind(|| {
-        complex::geru(
-            6,
-            8,
-            Complex::new(0.0, 0.0),
-            &[],
-            0,
-            &[],
-            1,
-            &mut [],
-            6,
-        )
+        complex::geru(6, 8, Complex::new(0.0, 0.0), &[], 0, &[], 1, &mut [], 6)
     });
     assert!(result.is_err());
 
     let result = std::panic::catch_unwind(|| {
-        complex::geru(
-            6,
-            8,
-            Complex::new(0.0, 0.0),
-            &[],
-            1,
-            &[],
-            0,
-            &mut [],
-            6,
-        )
+        complex::geru(6, 8, Complex::new(0.0, 0.0), &[], 1, &[], 0, &mut [], 6)
     });
     assert!(result.is_err());
 }
@@ -1043,12 +983,14 @@ fn hbmv() {
         Complex::new(0.14377148075806995, 0.9969868609091059),
         Complex::new(-0.11775359816595128, -0.27577802908802723),
     ];
-    let expect = [Complex::new(-0.6490100777088978, 0.7721421858045301),
+    let expect = [
+        Complex::new(-0.6490100777088978, 0.7721421858045301),
         Complex::new(0.0, 0.0),
         Complex::new(0.6641356998941105, -0.4248102833772871),
         Complex::new(0.0, 0.0),
         Complex::new(0.14377148075806995, 0.9969868609091059),
-        Complex::new(-0.11775359816595128, -0.27577802908802723)];
+        Complex::new(-0.11775359816595128, -0.27577802908802723),
+    ];
     complex::hbmv(
         'u',
         6,
@@ -1799,62 +1741,22 @@ fn her2() {
     capproximately!(a, expect);
 
     let result = std::panic::catch_unwind(|| {
-        complex::her2(
-            'x',
-            6,
-            Complex::new(0.0, 0.0),
-            &x,
-            -1,
-            &y,
-            -1,
-            &mut [],
-            6,
-        );
+        complex::her2('x', 6, Complex::new(0.0, 0.0), &x, -1, &y, -1, &mut [], 6);
     });
     assert!(result.is_err());
 
     let result = std::panic::catch_unwind(|| {
-        complex::her2(
-            'l',
-            6,
-            Complex::new(0.0, 0.0),
-            &x,
-            0,
-            &y,
-            -1,
-            &mut [],
-            6,
-        );
+        complex::her2('l', 6, Complex::new(0.0, 0.0), &x, 0, &y, -1, &mut [], 6);
     });
     assert!(result.is_err());
 
     let result = std::panic::catch_unwind(|| {
-        complex::her2(
-            'l',
-            6,
-            Complex::new(0.0, 0.0),
-            &x,
-            -1,
-            &y,
-            0,
-            &mut [],
-            6,
-        );
+        complex::her2('l', 6, Complex::new(0.0, 0.0), &x, -1, &y, 0, &mut [], 6);
     });
     assert!(result.is_err());
 
     let result = std::panic::catch_unwind(|| {
-        complex::her2(
-            'x',
-            6,
-            Complex::new(0.0, 0.0),
-            &x,
-            -1,
-            &y,
-            -1,
-            &mut [],
-            4,
-        );
+        complex::her2('x', 6, Complex::new(0.0, 0.0), &x, -1, &y, -1, &mut [], 4);
     });
     assert!(result.is_err());
 }
