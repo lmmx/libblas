@@ -10,7 +10,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     env:
-      CONDA_PKGS_DIR: ${{ env.HOME }}/conda_pkgs_dir
+      CONDA_PKGS_DIR: /home/runner/conda_pkgs_dir
     steps:
       - uses: actions/checkout@v4
       
