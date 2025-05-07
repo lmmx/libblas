@@ -12,7 +12,7 @@ export CONDA_ROOT=${CONDA_ROOT:-$CONDA}
 
 # If on CI, ensure we have set the CONDA_PKGS_DIR (~/conda_pkgs_dir)
 export CONDA_PKGS_DIR=${CONDA_PKGS_DIR:-$CONDA_ROOT/pkgs}
-test -d "$CONDA_PKGS_DIR" || { echo "Error: CONDA_PKGS_DIR directory does not exist"; exit 1; }
+test -d "$CONDA_PKGS_DIR" || { echo "Error: CONDA_PKGS_DIR does not exist at $CONDA_PKGS_DIR"; exit 1; }
 
 # Find json-fortran package directory
 JSON_PKG_DIR=$(ls -d $CONDA_PKGS_DIR/json-fortran-* 2>/dev/null | head -n 1)
