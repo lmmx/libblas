@@ -2,17 +2,26 @@
 DCABS1=./tests/conformance/_shared/dcabs1.f
 XERBLA=./tests/conformance/_shared/xerbla.f
 LSAME=./tests/conformance/_shared/lsame.f
-test -d ./jsonfortran-gnu-7.0.0 && L=./jsonfortran-gnu-7.0.0/lib/libjsonfortran.a
-test -d ./jsonfortran-gnu-7.0.0 && I=-I./jsonfortran-gnu-7.0.0/lib
-test -d $HOME/json-fortran/build/lib  && L=$HOME/json-fortran/build/lib/libjsonfortran.a || L=/usr/local/Cellar/json-fortran/6.10.0/lib/libjsonfortran.a
-test -d $HOME/json-fortran/build/include  && I=-I$HOME/json-fortran/build/include || I=-I/usr/local/Cellar/json-fortran/6.10.0/include
+# Add the library path for runtime loading
+export LD_LIBRARY_PATH=$HOME/miniconda3/pkgs/json-fortran-9.0.3-hc062a8b_0/lib:$LD_LIBRARY_PATH
+test -d $HOME/miniconda3/pkgs/json-fortran-9.0.3-hc062a8b_0/lib && L=$HOME/miniconda3/pkgs/json-fortran-9.0.3-hc062a8b_0/lib/libjsonfortran.so
+test -d $HOME/miniconda3/pkgs/json-fortran-9.0.3-hc062a8b_0/include && I=-I$HOME/miniconda3/pkgs/json-fortran-9.0.3-hc062a8b_0/include
+test -d $HOME/json-fortran/build/lib && L=$HOME/json-fortran/build/lib/libjsonfortran.so || L=$HOME/miniconda3/pkgs/json-fortran-9.0.3-hc062a8b_0/lib/libjsonfortran.so
+test -d $HOME/json-fortran/build/include && I=-I$HOME/json-fortran/build/include || I=-I$HOME/miniconda3/pkgs/json-fortran-9.0.3-hc062a8b_0/include
+# test -d ./jsonfortran-gnu-7.0.0 && L=./jsonfortran-gnu-7.0.0/lib/libjsonfortran.a
+# test -d ./jsonfortran-gnu-7.0.0 && I=-I./jsonfortran-gnu-7.0.0/lib
+# test -d $HOME/json-fortran/build/lib  && L=$HOME/json-fortran/build/lib/libjsonfortran.a || L=/usr/local/Cellar/json-fortran/6.10.0/lib/libjsonfortran.a
+# test -d $HOME/json-fortran/build/include  && I=-I$HOME/json-fortran/build/include || I=-I/usr/local/Cellar/json-fortran/6.10.0/include
 LIB=-ljsonfortran
 GEN=/gen
 FIXTURE=/fixture.f90
 
 LEVEL1=./tests/conformance/level1/
 LEVEL1C=./tests/conformance/level1/complex/
-mkdir -p ./tests/fixtures/{level1/complex,level2/complex,level3/complex,matrix}
+mkdir -p ./tests/fixtures/level1/complex
+mkdir -p ./tests/fixtures/level2/complex
+mkdir -p ./tests/fixtures/level3/complex
+mkdir -p ./tests/fixtures/matrix
 
 ASUM=asum
 gfortran $LEVEL1$ASUM/d$ASUM.f $LEVEL1$ASUM$FIXTURE $LSAME $XERBLA -o $LEVEL1$ASUM$GEN $L $I

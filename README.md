@@ -59,7 +59,7 @@ Release notes are available in [RELEASES.md](RELEASES.md).
 Conformance testing is done by generating fixtures from [REFERENCE BLAS Version 3.8.0](http://www.netlib.org/blas/) and run against `libblas`.
 To generate the fixture you need to have [json-fortran](https://github.com/jacobwilliams/json-fortran) installed.
 
-Run `sh ./script/conformance.sh && cargo test --test conformance`.
+Run `sh ./scripts/conformance.sh && cargo test --test conformance`.
 
 NOTE: only `double precision` and `complex*16` fixtures are generated.
 
