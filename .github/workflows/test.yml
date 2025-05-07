@@ -29,7 +29,7 @@ jobs:
         env:
           CACHE_NUMBER: 0 # Increment to reset cache if needed
         with:
-          path: ${{ env.HOME }}/conda_pkgs_dir
+          path: ${{ env.CONDA_PKGS_DIR }}
           key: ${{ runner.os }}-conda-${{ env.CACHE_NUMBER }}-json-fortran
 
       - name: Set up Conda
