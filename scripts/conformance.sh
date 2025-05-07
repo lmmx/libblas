@@ -12,7 +12,7 @@ export CONDA_ROOT=${CONDA_ROOT:-$CONDA}
 
 # Debug: Find the json-fortran package by searching for the library file
 echo "Searching for libjsonfortran.so in conda directories..."
-FOUND_PATHS=$(find $CONDA_ROOT -name "libjsonfortran.so" -type f 2>/dev/null)
+FOUND_PATHS=$(find $CONDA_ROOT -name "*jsonfortran*" 2>/dev/null)
 echo "Found libjsonfortran.so in these locations:"
 echo "$FOUND_PATHS"
 
