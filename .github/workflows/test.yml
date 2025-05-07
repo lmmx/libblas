@@ -9,6 +9,8 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    env:
+      CONDA_PKGS_DIR: ~/conda_pkgs_dir
     steps:
       - uses: actions/checkout@v4
       
@@ -22,12 +24,10 @@ jobs:
         with:
           tool: cargo-llvm-cov,cargo-nextest,cargo-tarpaulin,just
 
-      # Cache conda packages
       - name: Cache conda packages
         uses: actions/cache@v3
         env:
-          # Increase this value to reset cache if needed
-          CACHE_NUMBER: 0
+          CACHE_NUMBER: 0 # Increment to reset cache if needed
         with:
           path: ~/conda_pkgs_dir
           key: ${{ runner.os }}-conda-${{ env.CACHE_NUMBER }}-json-fortran
@@ -45,12 +45,13 @@ jobs:
           
       - name: Generate conformance files
         shell: bash -l {0}
-        run: |
-          export CONDA_PKGS_DIR=$HOME/conda_pkgs_dir
-          just gen-conform
+        run: just gen-conform
       
       - name: Cache setup
         uses: Swatinem/rust-cache@9d47c6ad4b02e050fd481d890b2ea34778fd09d6 # v2.7.8
+        with:
+          cache-on-failure: true
+          key: ${{ hashFiles('**/Cargo.toml') }}
 
       - name: Gather coverage
         shell: bash
