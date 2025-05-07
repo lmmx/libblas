@@ -46,7 +46,7 @@ jobs:
 
       # ── Generate fixtures if needed ─────────────────────────────────────────
       - name: Generate conformance files
-        if: steps.cache-fixtures.outputs.cache-hit != 'true'
+        # if: steps.cache-fixtures.outputs.cache-hit != 'true'
         shell: bash -l {0}
         run: just gen-conform-pixi
 
