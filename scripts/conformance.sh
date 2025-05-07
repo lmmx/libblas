@@ -16,6 +16,11 @@ FOUND_PATHS=$(find $CONDA_ROOT -name "*jsonfortran*" 2>/dev/null)
 echo "Found libjsonfortran.so in these locations:"
 echo "$FOUND_PATHS"
 
+echo "Searching for libjsonfortran.so in ~/conda_pkgs_dir directories..."
+FOUND_PATHS=$(find $HOME -name "*jsonfortran*" 2>/dev/null)
+echo "Found libjsonfortran.so in these locations:"
+echo "$FOUND_PATHS"
+
 # Find json-fortran package directory
 JSON_PKG_DIR=$(ls -d $CONDA_ROOT/pkgs/json-fortran-* 2>/dev/null | head -n 1)
 : ${JSON_PKG_DIR:?Error: json-fortran package not found under $CONDA_ROOT/pkgs}
