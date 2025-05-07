@@ -3,8 +3,8 @@ set -euo pipefail
 set -x
 
 # ── Locate the active pixi prefix ------------------------------------------------
-PIXI_PREFIX=$PWD/.pixi/envs/default
-test -d "$PIXI_PREFIX" || { echo "pixi prefix not found"; exit 1; }
+PIXI_PREFIX="$(pixi info --json | jq -r .global_info.env_dir)/default"
+test -d "$PIXI_PREFIX" || { echo "pixi directory not found"; exit 1; }
 
 LIB_DIR="$PIXI_PREFIX/lib"
 INC_DIR="$PIXI_PREFIX/include"
