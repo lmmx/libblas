@@ -22,11 +22,22 @@ jobs:
         with:
           tool: cargo-llvm-cov,cargo-nextest,cargo-tarpaulin,just
 
+      # Cache conda packages
+      - name: Cache conda packages
+        uses: actions/cache@v3
+        env:
+          # Increase this value to reset cache if needed
+          CACHE_NUMBER: 0
+        with:
+          path: ~/conda_pkgs_dir
+          key: ${{ runner.os }}-conda-${{ env.CACHE_NUMBER }}-json-fortran
+
       - name: Set up Conda
-        uses: conda-incubator/setup-miniconda@v3
+        uses: conda-incubator/setup-miniconda@505e6394dae86d6a5c7fbb6e3fb8938e3e863830 # v3.1.1
         with:
           auto-activate-base: true
           activate-environment: ""
+          use-only-tar-bz2: true  # Important for caching
           
       - name: Install Conda dependencies
         shell: bash -l {0}
@@ -39,7 +50,7 @@ jobs:
           just gen-conform
       
       - name: Cache setup
-        uses: Swatinem/rust-cache@v2
+        uses: Swatinem/rust-cache@9d47c6ad4b02e050fd481d890b2ea34778fd09d6 # v2.7.8
 
       - name: Gather coverage
         shell: bash
