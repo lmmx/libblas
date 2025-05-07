@@ -63,7 +63,5 @@ jobs:
           key: ${{ hashFiles('**/Cargo.toml') }}
 
       # ── Run tests ──────────────────────────────────────────────────────────
-      - name: Compile
-        run: cargo check --tests
       - name: Run tests
         run: cargo nextest run
