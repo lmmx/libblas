@@ -38,9 +38,12 @@ jobs:
           log-level: vv
 
       # ── Build conformance fixtures (inside pixi env) ───────────────────────
-      - name: Generate BLAS conformance fixtures
-        run: bash scripts/conformance_pixi.sh
-        shell: pixi run bash -e {0}
+      - name: Generate conformance files
+        shell: bash -l {0}
+        run: just gen-conform
+      # - name: Generate BLAS conformance fixtures
+      #   run: bash scripts/conformance_pixi.sh
+      #   shell: pixi run bash -e {0}
 
       # ── Rust build-cache (unchanged) ───────────────────────────────────────
       - uses: Swatinem/rust-cache@v2
