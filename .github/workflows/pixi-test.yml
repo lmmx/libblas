@@ -22,9 +22,11 @@ jobs:
         uses: dtolnay/rust-toolchain@nightly    # LLVM coverage needs nightly
         with:
           components: llvm-tools-preview
-      - name: Install cargo helpers
+
+      - name: Install cargo-llvm-cov and cargo-nextest
         uses: taiki-e/install-action@v2
-        with: { tool: cargo-llvm-cov,cargo-nextest,cargo-tarpaulin,just }
+        with:
+          tool: cargo-llvm-cov,cargo-nextest,cargo-tarpaulin,just
 
       # ── Pixi environment ───────────────────────────────────────────────────
       - name: Set up pixi
