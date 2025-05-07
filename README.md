@@ -1,8 +1,8 @@
 # libblas
 [![documentation](https://docs.rs/libblas/badge.svg)](https://docs.rs/libblas)
-[![CircleCI](https://circleci.com/gh/Schultzer/libblas.svg?style=svg)](https://circleci.com/gh/Schultzer/libblas)
-[![Build status](https://ci.appveyor.com/api/projects/status/6tywgu4a035iqeqn?svg=true)](https://ci.appveyor.com/project/Schultzer/libblas)
+[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/lmmx/libblas/test.yml)](https://github.com/lmmx/libblas/actions/workflows/test.yml)
 
+<!--[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/lmmx/libblas/binaries.yml)](https://github.com/lmmx/libblas/actions/workflows/binaries.yml)-->
 
 [BLAS](https://en.wikipedia.org/wiki/Basic_Linear_Algebra_Subprograms) for Rust.
 
