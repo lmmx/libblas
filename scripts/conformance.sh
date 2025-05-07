@@ -3,8 +3,9 @@ DCABS1=./tests/conformance/_shared/dcabs1.f
 XERBLA=./tests/conformance/_shared/xerbla.f
 LSAME=./tests/conformance/_shared/lsame.f
 
-env | grep '^CONDA'
-: ${CONDA_ROOT:?CONDA_ROOT environment variable is not set}
+# Use existing CONDA_ROOT if set, otherwise set from CONDA_EXE
+export CONDA_ROOT=${CONDA_ROOT:-$CONDA}
+: ${CONDA_ROOT:?CONDA_ROOT could not be set from CONDA_ROOT nor CONDA env var}
 
 # Find json-fortran package directory
 JSON_PKG_DIR=$(ls -d $CONDA_ROOT/pkgs/json-fortran-* 2>/dev/null | head -n 1)
