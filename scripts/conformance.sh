@@ -2,16 +2,24 @@
 DCABS1=./tests/conformance/_shared/dcabs1.f
 XERBLA=./tests/conformance/_shared/xerbla.f
 LSAME=./tests/conformance/_shared/lsame.f
+
+: ${CONDA_ROOT:?CONDA_ROOT environment variable is not set}
+
+# Find json-fortran package directory
+JSON_PKG_DIR=$(ls -d $CONDA_ROOT/pkgs/json-fortran-* 2>/dev/null | head -n 1)
+: ${JSON_PKG_DIR:?Error: json-fortran package not found under $CONDA_ROOT/pkgs}
+
+# Check both lib and include directories exist
+test -d "$JSON_PKG_DIR/lib" || { echo "Error: Library directory not found at $JSON_PKG_DIR/lib"; exit 1; }
+test -d "$JSON_PKG_DIR/include" || { echo "Error: Include directory not found at $JSON_PKG_DIR/include"; exit 1; }
+
+# Store variables for lib and include paths
+L="$JSON_PKG_DIR/lib/libjsonfortran.so"
+I="-I$JSON_PKG_DIR/include"
+
 # Add the library path for runtime loading
-export LD_LIBRARY_PATH=$CONDA_ROOT/pkgs/json-fortran-9.0.3-hc062a8b_0/lib:$LD_LIBRARY_PATH
-test -d $CONDA_ROOT/pkgs/json-fortran-9.0.3-hc062a8b_0/lib && L=$CONDA_ROOT/pkgs/json-fortran-9.0.3-hc062a8b_0/lib/libjsonfortran.so
-test -d $CONDA_ROOT/pkgs/json-fortran-9.0.3-hc062a8b_0/include && I=-I$CONDA_ROOT/pkgs/json-fortran-9.0.3-hc062a8b_0/include
-test -d $HOME/json-fortran/build/lib && L=$HOME/json-fortran/build/lib/libjsonfortran.so || L=$HOME/miniconda3/pkgs/json-fortran-9.0.3-hc062a8b_0/lib/libjsonfortran.so
-test -d $HOME/json-fortran/build/include && I=-I$HOME/json-fortran/build/include || I=-I$HOME/miniconda3/pkgs/json-fortran-9.0.3-hc062a8b_0/include
-# test -d ./jsonfortran-gnu-7.0.0 && L=./jsonfortran-gnu-7.0.0/lib/libjsonfortran.a
-# test -d ./jsonfortran-gnu-7.0.0 && I=-I./jsonfortran-gnu-7.0.0/lib
-# test -d $HOME/json-fortran/build/lib  && L=$HOME/json-fortran/build/lib/libjsonfortran.a || L=/usr/local/Cellar/json-fortran/6.10.0/lib/libjsonfortran.a
-# test -d $HOME/json-fortran/build/include  && I=-I$HOME/json-fortran/build/include || I=-I/usr/local/Cellar/json-fortran/6.10.0/include
+export LD_LIBRARY_PATH="$JSON_PKG_DIR/lib:$LD_LIBRARY_PATH"
+
 LIB=-ljsonfortran
 GEN=/gen
 FIXTURE=/fixture.f90
