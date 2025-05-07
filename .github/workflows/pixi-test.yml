@@ -55,12 +55,15 @@ jobs:
       #   run: bash scripts/conformance_pixi.sh
       #   shell: pixi run bash -e {0}
 
-      # ── Rust build-cache (unchanged) ───────────────────────────────────────
+      # ── Rust build-cache ────────────────────────────────────────────────────
       - uses: Swatinem/rust-cache@v2
         with:
           cache-on-failure: true
+          cache-provider: buildjet
           key: ${{ hashFiles('**/Cargo.toml') }}
 
       # ── Run tests ──────────────────────────────────────────────────────────
+      - name: Compile
+        run: cargo check --locked
       - name: Run tests
         run: cargo nextest run
