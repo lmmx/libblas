@@ -16,7 +16,8 @@ if [[ ! -f "$LIB_JSON" ]]; then
   exit 1
 fi
 
-export LD_LIBRARY_PATH="$LIB_DIR:$LD_LIBRARY_PATH"
+# Add library path safely (note we have set -u so cannot be unbound)
+export LD_LIBRARY_PATH="${LIB_DIR}:${LD_LIBRARY_PATH:-}"
 L="$LIB_JSON"
 I="-I$INC_DIR"
 
