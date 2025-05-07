@@ -10,7 +10,8 @@ on:
 jobs:
   test-pixi:
     runs-on: ubuntu-latest
-
+    env:
+      CARGO_PROFILE_TEST_DEBUG: 0 # Disable debug info, which increases cached target size
     steps:
       # ── Check out code ──────────────────────────────────────────────────────
       - uses: actions/checkout@v4
