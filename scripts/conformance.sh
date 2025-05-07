@@ -3,6 +3,7 @@ DCABS1=./tests/conformance/_shared/dcabs1.f
 XERBLA=./tests/conformance/_shared/xerbla.f
 LSAME=./tests/conformance/_shared/lsame.f
 
+env | grep '^CONDA'
 : ${CONDA_ROOT:?CONDA_ROOT environment variable is not set}
 
 # Find json-fortran package directory
