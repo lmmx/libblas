@@ -1,0 +1,55 @@
+name: Tests (Pixi)
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # ── Check out code ──────────────────────────────────────────────────────
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      # ── Rust toolchain & helpers ────────────────────────────────────────────
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@nightly    # LLVM coverage needs nightly
+        with:
+          components: llvm-tools-preview
+      - name: Install cargo helpers
+        uses: taiki-e/install-action@v2
+        with: { tool: cargo-llvm-cov,cargo-nextest,cargo-tarpaulin,just }
+
+      # ── Pixi environment ───────────────────────────────────────────────────
+      - name: Set up pixi
+        uses: prefix-dev/setup-pixi@v0.8.8
+        with:
+          pixi-version: v0.44.0
+          activate-environment: true
+          cache-write: ${{ github.ref == 'refs/heads/master' }}
+          log-level: vv
+
+      # ── Build conformance fixtures (inside pixi env) ───────────────────────
+      - name: Generate BLAS conformance fixtures
+        run: bash scripts/conformance_pixi.sh
+        shell: pixi run bash -e {0}
+
+      # ── Rust build-cache (unchanged) ───────────────────────────────────────
+      - uses: Swatinem/rust-cache@v2
+        with:
+          cache-on-failure: true
+          key: ${{ hashFiles('**/Cargo.toml') }}
+
+      # ── Coverage ───────────────────────────────────────────────────────────
+      - name: Gather coverage
+        run: |
+          cargo llvm-cov --no-report nextest
+          cargo llvm-cov --no-report --doc
+          mkdir coverage
+          cargo llvm-cov report --doctests --lcov --output-path coverage/lcov.info

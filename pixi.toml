@@ -1,0 +1,11 @@
+[workspace]
+authors = ["Louis Maddox <louismmx@gmail.com>"]
+channels = ["conda-forge"]
+name = "libblas"
+platforms = ["linux-64"]
+version = "0.1.0"
+
+[tasks]
+
+[dependencies]
+json-fortran = { version = ">=9.0.3,<10", channel = "conda-forge" }

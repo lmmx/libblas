@@ -5,3 +5,8 @@ Cargo.lock
 /tests/fixtures/level1
 /tests/fixtures/level3
 /tests/fixtures/matrix
+
+# pixi environments
+.pixi
+*.egg-info
+mise.toml

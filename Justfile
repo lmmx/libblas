@@ -66,7 +66,7 @@ fix-eof-ws mode="":
     whitespace-format --add-new-line-marker-at-end-of-file \
           --new-line-marker=linux \
           --normalize-new-line-markers \
-          --exclude ".git/|dist/|.venv/|.*_cache|target/|.json$|.lock|.sw[op]$" \
+          --exclude ".git/|.pixi/|dist/|.venv/|.*_cache|target/|.json$|.lock|.sw[op]$" \
           $ARGS \
           .
 
