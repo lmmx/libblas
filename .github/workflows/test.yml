@@ -34,7 +34,9 @@ jobs:
           
       - name: Generate conformance files
         shell: bash -l {0}
-        run: just gen-conform
+        run: |
+          export CONDA_PKGS_DIR=$HOME/conda_pkgs_dir
+          just gen-conform
       
       - name: Cache setup
         uses: Swatinem/rust-cache@v2

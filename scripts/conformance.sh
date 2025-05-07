@@ -6,24 +6,18 @@ LSAME=./tests/conformance/_shared/lsame.f
 
 env | grep '^CONDA'
 
-# Use existing CONDA_ROOT if set, otherwise set from CONDA_EXE
+# Use existing CONDA_ROOT if set, otherwise ensure we have a CONDA env var (i.e. we have conda)
 export CONDA_ROOT=${CONDA_ROOT:-$CONDA}
 : ${CONDA_ROOT:?CONDA_ROOT could not be set from CONDA_ROOT nor CONDA env var}
 
-# Debug: Find the json-fortran package by searching for the library file
-echo "Searching for libjsonfortran.so in conda directories..."
-FOUND_PATHS=$(find $CONDA_ROOT -name "*jsonfortran*" 2>/dev/null)
-echo "Found libjsonfortran.so in these locations:"
-echo "$FOUND_PATHS"
-
-echo "Searching for libjsonfortran.so in ~/conda_pkgs_dir directories..."
-FOUND_PATHS=$(find $HOME -name "*jsonfortran*" 2>/dev/null)
-echo "Found libjsonfortran.so in these locations:"
-echo "$FOUND_PATHS"
+# If on CI, ensure we have set the CONDA_PKGS_DIR (~/conda_pkgs_dir)
+export CONDA_PKGS_DIR=${CONDA_PKGS_DIR:-$CONDA_ROOT/pkgs}
+test -d "$CONDA_PKGS_DIR" || { echo "Error: CONDA_PKGS_DIR directory does not exist"; exit 1; }
 
 # Find json-fortran package directory
-JSON_PKG_DIR=$(ls -d $CONDA_ROOT/pkgs/json-fortran-* 2>/dev/null | head -n 1)
-: ${JSON_PKG_DIR:?Error: json-fortran package not found under $CONDA_ROOT/pkgs}
+JSON_PKG_DIR=$(ls -d $CONDA_PKGS_DIR/json-fortran-* 2>/dev/null | head -n 1)
+: ${JSON_PKG_DIR:?Error: json-fortran package not found under $CONDA_PKGS_DIR}
+
 echo "Found JSON_PKG_DIR $JSON_PKG_DIR"
 
 # Check both lib and include directories exist
