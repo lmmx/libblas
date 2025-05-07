@@ -33,9 +33,7 @@ jobs:
           
       - name: Generate conformance files
         shell: bash -l {0}
-        run: |
-          set -x
-          just gen-conform
+        run: just gen-conform
       
       - name: Cache setup
         uses: Swatinem/rust-cache@v2

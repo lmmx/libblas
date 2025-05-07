@@ -1,4 +1,5 @@
 #!/bin/bash
+set -x
 DCABS1=./tests/conformance/_shared/dcabs1.f
 XERBLA=./tests/conformance/_shared/xerbla.f
 LSAME=./tests/conformance/_shared/lsame.f
