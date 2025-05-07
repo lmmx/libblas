@@ -40,7 +40,7 @@ jobs:
       # ── Build conformance fixtures (inside pixi env) ───────────────────────
       - name: Generate conformance files
         shell: bash -l {0}
-        run: just gen-conform
+        run: just gen-conform-pixi
       # - name: Generate BLAS conformance fixtures
       #   run: bash scripts/conformance_pixi.sh
       #   shell: pixi run bash -e {0}

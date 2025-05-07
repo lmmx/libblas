@@ -35,6 +35,9 @@ bench-exec:
 gen-conform:
     test -f "tests/fixtures/level1/dot.json" || bash -l scripts/conformance.sh
 
+gen-conform-pixi:
+    test -f "tests/fixtures/level1/dot.json" || bash -l scripts/conformance_pixi.sh
+
 test *args:
     just gen-conform
     cargo nextest run {{args}} < /dev/null
