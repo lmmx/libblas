@@ -134,7 +134,6 @@ pub fn gemm<T: Float + NumAssignOps>(
             }
             j += 1;
         }
-        return;
     } else if (trans_a == 'n' || trans_a == 'N') && (trans_b == 'c' || trans_b == 'C') {
         let mut j = 0;
         while j < n {
@@ -343,7 +342,6 @@ pub fn gemm<T: Float + NumAssignOps>(
             j += 1;
         }
     }
-    return;
 }
 
 /// CSYMM  performs one of the matrix-matrix operations
@@ -886,7 +884,6 @@ pub fn trmm<T: Float + NumAssignOps>(
                 j += 1;
             }
         }
-        return;
     } else if (side == 'l' || side == 'L')
         && (trans == 't' || trans == 'T' || trans == 'c' || trans == 'C')
     {
@@ -1404,7 +1401,6 @@ pub fn trsm<T: Float + NumAssignOps>(
                 }
             }
         }
-        return;
     } else {
         let mut k = 0;
         while k < n {
@@ -1450,7 +1446,6 @@ pub fn trsm<T: Float + NumAssignOps>(
             }
             k += 1;
         }
-        return;
     }
 }
 
@@ -1499,7 +1494,7 @@ pub fn hemm<T: Float + NumAssignOps>(
     }
 
     if alpha_is_zero {
-        multiply(c, beta, ldc as usize, n as usize, m as usize);
+        multiply(c, beta, ldc, n, m);
         return;
     }
 
@@ -1665,7 +1660,7 @@ pub fn her2k<T: Float + NumAssignOps>(
                     i += 1;
                 }
             }
-            let start = if upper { 0 as isize } else { j as isize + 1 };
+            let start = if upper { 0_isize } else { j as isize + 1 };
             let stop = if upper {
                 j as isize - 1
             } else {

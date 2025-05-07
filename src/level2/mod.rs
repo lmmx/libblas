@@ -360,7 +360,7 @@ pub fn sbmv<T: Float + NumAssignOps>(
                 iy += incy;
                 i += 1;
             }
-            y[jy as usize] += tmp * a[(aj + k) as usize] + alpha * tmp2;
+            y[jy as usize] += tmp * a[aj + k] + alpha * tmp2;
             jx += incx;
             jy += incy;
             j += 1;
@@ -1052,7 +1052,7 @@ pub fn tbmv<T: Float + NumAssignOps>(
             kx += incx;
             let mut ix = kx;
             if nounit {
-                tmp *= a[(aj) as usize];
+                tmp *= a[aj];
             }
             let mut i = j + 1;
             while i < min(n, j + k + 1) {

@@ -173,7 +173,6 @@ pub fn rotmg<T: Float + NumAssignOps + num_traits::cast::FromPrimitive>(
     }
 
     dparam[0] = dflag;
-    return;
 }
 
 #[test]
@@ -208,13 +207,13 @@ fn test_rotmg() {
     let mut y1 = 1.0;
     let mut param = vec![0.0, 0.0, 0.0, 0.0, 0.0];
     rotmg(&mut d1, &mut d2, &mut x1, &mut y1, &mut param);
-    assert_eq!(d1, 0.81818181818181812);
+    assert_eq!(d1, 0.818_181_818_181_818_1);
     assert_eq!(d2, 1.6363636363636362);
-    assert_eq!(x1, 3.6666666666666670);
+    assert_eq!(x1, 3.666_666_666_666_667);
     assert_eq!(y1, 1.0);
     assert_eq!(
         param,
-        [0.0, 0.0, -0.33333333333333331, 0.66666666666666663, 0.0]
+        [0.0, 0.0, -0.333_333_333_333_333_3, 0.666_666_666_666_666_6, 0.0]
     );
 
     let mut d1 = 2.0;
@@ -235,9 +234,9 @@ fn test_rotmg() {
     let mut y1 = 8.0;
     let mut param = vec![0.0, 0.0, 0.0, 0.0, 0.0];
     rotmg(&mut d1, &mut d2, &mut x1, &mut y1, &mut param);
-    assert_eq!(d1, 0.78048780487804881);
+    assert_eq!(d1, 0.780_487_804_878_048_8);
     assert_eq!(d2, 1.5609756097560976);
-    assert_eq!(x1, 10.250000000000000);
+    assert_eq!(x1, 10.25);
     assert_eq!(y1, 8.0000000000000000);
     assert_eq!(param, [1.0, 0.75, 0.0, 0.0, 0.375]);
 
@@ -247,18 +246,18 @@ fn test_rotmg() {
     let mut y1 = 8.0;
     let mut param = vec![0.0, 0.0, 0.0, 0.0, 0.0];
     rotmg(&mut d1, &mut d2, &mut x1, &mut y1, &mut param);
-    assert_eq!(d1, 0.39024390243902440);
-    assert_eq!(d2, 0.78048780487804881);
-    assert_eq!(x1, 2.5024414062500000E-003);
+    assert_eq!(d1, 0.390_243_902_439_024_4);
+    assert_eq!(d2, 0.780_487_804_878_048_8);
+    assert_eq!(x1, 2.502_441_406_25E-3);
     assert_eq!(y1, 8.0);
     assert_eq!(
         param,
         [
             -1.0,
-            1.8310546875000000E-004,
-            -2.4414062500000000E-004,
+            1.831_054_687_5E-4,
+            -2.441_406_25E-4,
             0.00024414062500,
-            9.1552734375000000E-005
+            9.155_273_437_5E-5
         ]
     );
 
@@ -281,18 +280,18 @@ fn test_rotmg() {
     let mut y1 = 2.0;
     let mut param = vec![0.0, 0.0, 0.0, 0.0, 0.0];
     rotmg(&mut d1, &mut d2, &mut x1, &mut y1, &mut param);
-    assert_eq!(d1, 0.81818181818181812);
+    assert_eq!(d1, 0.818_181_818_181_818_1);
     assert_eq!(d2, 0.40909090909090906);
-    assert_eq!(x1, 8.9518229166666674E-004);
+    assert_eq!(x1, 8.951_822_916_666_667E-4);
     assert_eq!(y1, 2.0);
     assert_eq!(
         param,
         [
             -1.0,
-            2.4414062500000000E-004,
+            2.441_406_25E-4,
             -0.00016276041666666666,
             0.00008138020833333333,
-            2.4414062500000000E-004
+            2.441_406_25E-4
         ]
     );
 
@@ -302,18 +301,18 @@ fn test_rotmg() {
     let mut y1 = 2.0;
     let mut param = vec![0.0, 0.0, 0.0, 0.0, 0.0];
     rotmg(&mut d1, &mut d2, &mut x1, &mut y1, &mut param);
-    assert_eq!(d1, 9.7534873268821016E-008);
-    assert_eq!(d2, 0.81818181818181812);
-    assert_eq!(x1, 3.6666666666666670);
+    assert_eq!(d1, 9.753_487_326_882_102E-8);
+    assert_eq!(d2, 0.818_181_818_181_818_1);
+    assert_eq!(x1, 3.666_666_666_666_667);
     assert_eq!(y1, 2.0);
     assert_eq!(
         param,
         [
             -1.0,
             1.0,
-            -1.6276041666666666E-004,
-            0.33333333333333331,
-            2.4414062500000000E-004
+            -1.627_604_166_666_666_6E-4,
+            0.333_333_333_333_333_3,
+            2.441_406_25E-4
         ]
     );
 
@@ -323,9 +322,9 @@ fn test_rotmg() {
     let mut y1 = 2.0;
     let mut param = vec![0.0, 0.0, 0.0, 0.0, 0.0];
     rotmg(&mut d1, &mut d2, &mut x1, &mut y1, &mut param);
-    assert_eq!(d1, 8882055.5294117648);
+    assert_eq!(d1, 8_882_055.529_411_765);
     assert_eq!(d2, 1.0588235294117647);
-    assert_eq!(x1, 5.6666666666666661);
+    assert_eq!(x1, 5.666_666_666_666_666);
     assert_eq!(y1, 2.0);
     assert_eq!(
         param,
@@ -339,11 +338,11 @@ fn test_rotmg() {
     let mut param = vec![0.0, 0.0, 0.0, 0.0, 0.0];
     rotmg(&mut d1, &mut d2, &mut x1, &mut y1, &mut param);
     assert_eq!(d1, 1.6363636363636362);
-    assert_eq!(d2, 13726813.090909090);
+    assert_eq!(d2, 13_726_813.090_909_09);
     assert_eq!(x1, 15018.666666666668);
     assert_eq!(y1, 2.0);
     assert_eq!(
         param,
-        [-1.0, 4096.0, -0.66666666666666663, 1365.3333333333333, 1.0]
+        [-1.0, 4096.0, -0.666_666_666_666_666_6, 1365.3333333333333, 1.0]
     );
 }

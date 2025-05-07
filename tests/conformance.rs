@@ -77,8 +77,8 @@ fn copy() {
 
 #[test]
 fn ddot() {
-    let mut reader;
-    let mut file;
+    let reader;
+    let file;
     file = File::open("./tests/fixtures/level1/ddot.json").unwrap();
     reader = BufReader::new(file);
     let tests: Vec<case::ddot> = serde_json::from_reader(reader).unwrap();
@@ -89,8 +89,8 @@ fn ddot() {
 
 #[test]
 fn dotc() {
-    let mut reader;
-    let mut file;
+    let reader;
+    let file;
     file = File::open("./tests/fixtures/level1/complex/dotc.json").unwrap();
     reader = BufReader::new(file);
     let tests: Vec<case::complex::dot> = serde_json::from_reader(reader).unwrap();
@@ -104,8 +104,8 @@ fn dotc() {
 
 #[test]
 fn dotu() {
-    let mut reader;
-    let mut file;
+    let reader;
+    let file;
     file = File::open("./tests/fixtures/level1/complex/dotu.json").unwrap();
     reader = BufReader::new(file);
     let tests: Vec<case::complex::dot> = serde_json::from_reader(reader).unwrap();
@@ -220,8 +220,8 @@ fn rotg() {
 
 #[test]
 fn rotm() {
-    let mut reader;
-    let mut file;
+    let reader;
+    let file;
     file = File::open("./tests/fixtures/level1/rotm.json").unwrap();
     reader = BufReader::new(file);
     let tests: Vec<case::rotm> = serde_json::from_reader(reader).unwrap();
@@ -239,8 +239,8 @@ fn rotm() {
 
 #[test]
 fn rotmg() {
-    let mut reader;
-    let mut file;
+    let reader;
+    let file;
     file = File::open("./tests/fixtures/level1/rotmg.json").unwrap();
     reader = BufReader::new(file);
     let tests: Vec<case::rotmg> = serde_json::from_reader(reader).unwrap();
@@ -285,8 +285,8 @@ fn scal() {
 
 #[test]
 fn sscal() {
-    let mut reader;
-    let mut file;
+    let reader;
+    let file;
 
     file = File::open("./tests/fixtures/level1/complex/sscal.json").unwrap();
     reader = BufReader::new(file);
@@ -389,8 +389,8 @@ fn ger() {
 
 #[test]
 fn hbmv() {
-    let mut reader;
-    let mut file;
+    let reader;
+    let file;
     file = File::open("./tests/fixtures/level2/complex/hbmv.json").unwrap();
     reader = BufReader::new(file);
     let tests: Vec<case::complex::hbmv> = serde_json::from_reader(reader).unwrap();
@@ -405,8 +405,8 @@ fn hbmv() {
 
 #[test]
 fn hemv() {
-    let mut reader;
-    let mut file;
+    let reader;
+    let file;
     file = File::open("./tests/fixtures/level2/complex/hemv.json").unwrap();
     reader = BufReader::new(file);
     let tests: Vec<case::complex::hemv> = serde_json::from_reader(reader).unwrap();
@@ -421,8 +421,8 @@ fn hemv() {
 
 #[test]
 fn her() {
-    let mut reader;
-    let mut file;
+    let reader;
+    let file;
     file = File::open("./tests/fixtures/level2/complex/her.json").unwrap();
     reader = BufReader::new(file);
     let tests: Vec<case::complex::her> = serde_json::from_reader(reader).unwrap();
@@ -436,8 +436,8 @@ fn her() {
 
 #[test]
 fn her2() {
-    let mut reader;
-    let mut file;
+    let reader;
+    let file;
     file = File::open("./tests/fixtures/level2/complex/her2.json").unwrap();
     reader = BufReader::new(file);
     let tests: Vec<case::complex::her2> = serde_json::from_reader(reader).unwrap();
@@ -452,8 +452,8 @@ fn her2() {
 
 #[test]
 fn hpmv() {
-    let mut reader;
-    let mut file;
+    let reader;
+    let file;
     file = File::open("./tests/fixtures/level2/complex/hpmv.json").unwrap();
     reader = BufReader::new(file);
     let tests: Vec<case::complex::hpmv> = serde_json::from_reader(reader).unwrap();
@@ -468,8 +468,8 @@ fn hpmv() {
 
 #[test]
 fn hpr() {
-    let mut reader;
-    let mut file;
+    let reader;
+    let file;
     file = File::open("./tests/fixtures/level2/complex/hpr.json").unwrap();
     reader = BufReader::new(file);
     let tests: Vec<case::complex::hpr> = serde_json::from_reader(reader).unwrap();
@@ -483,8 +483,8 @@ fn hpr() {
 
 #[test]
 fn hpr2() {
-    let mut reader;
-    let mut file;
+    let reader;
+    let file;
     file = File::open("./tests/fixtures/level2/complex/hpr2.json").unwrap();
     reader = BufReader::new(file);
     let tests: Vec<case::complex::hpr2> = serde_json::from_reader(reader).unwrap();
@@ -497,8 +497,8 @@ fn hpr2() {
 
 #[test]
 fn sbmv() {
-    let mut reader;
-    let mut file;
+    let reader;
+    let file;
     file = File::open("./tests/fixtures/level2/sbmv.json").unwrap();
     reader = BufReader::new(file);
     let tests: Vec<case::sbmv> = serde_json::from_reader(reader).unwrap();
@@ -513,8 +513,8 @@ fn sbmv() {
 
 #[test]
 fn spmv() {
-    let mut reader;
-    let mut file;
+    let reader;
+    let file;
     file = File::open("./tests/fixtures/level2/spmv.json").unwrap();
     reader = BufReader::new(file);
     let tests: Vec<case::spmv> = serde_json::from_reader(reader).unwrap();
@@ -529,8 +529,8 @@ fn spmv() {
 
 #[test]
 fn spr() {
-    let mut reader;
-    let mut file;
+    let reader;
+    let file;
     file = File::open("./tests/fixtures/level2/spr.json").unwrap();
     reader = BufReader::new(file);
     let tests: Vec<case::spr> = serde_json::from_reader(reader).unwrap();
@@ -543,8 +543,8 @@ fn spr() {
 
 #[test]
 fn spr2() {
-    let mut reader;
-    let mut file;
+    let reader;
+    let file;
     file = File::open("./tests/fixtures/level2/spr2.json").unwrap();
     reader = BufReader::new(file);
     let tests: Vec<case::spr2> = serde_json::from_reader(reader).unwrap();
@@ -557,8 +557,8 @@ fn spr2() {
 
 #[test]
 fn symv() {
-    let mut reader;
-    let mut file;
+    let reader;
+    let file;
     file = File::open("./tests/fixtures/level2/symv.json").unwrap();
     reader = BufReader::new(file);
     let tests: Vec<case::symv> = serde_json::from_reader(reader).unwrap();
@@ -573,8 +573,8 @@ fn symv() {
 
 #[test]
 fn syr() {
-    let mut reader;
-    let mut file;
+    let reader;
+    let file;
     file = File::open("./tests/fixtures/level2/syr.json").unwrap();
     reader = BufReader::new(file);
     let tests: Vec<case::syr> = serde_json::from_reader(reader).unwrap();
@@ -587,8 +587,8 @@ fn syr() {
 
 #[test]
 fn syr2() {
-    let mut reader;
-    let mut file;
+    let reader;
+    let file;
     file = File::open("./tests/fixtures/level2/syr2.json").unwrap();
     reader = BufReader::new(file);
     let tests: Vec<case::syr2> = serde_json::from_reader(reader).unwrap();
@@ -779,8 +779,8 @@ fn gemm() {
 
 #[test]
 fn hemm() {
-    let mut reader;
-    let mut file;
+    let reader;
+    let file;
     file = File::open("./tests/fixtures/level3/complex/hemm.json").unwrap();
     reader = BufReader::new(file);
     let tests: Vec<case::complex::hemm> = serde_json::from_reader(reader).unwrap();
@@ -795,8 +795,8 @@ fn hemm() {
 
 #[test]
 fn herk() {
-    let mut reader;
-    let mut file;
+    let reader;
+    let file;
     file = File::open("./tests/fixtures/level3/complex/herk.json").unwrap();
     reader = BufReader::new(file);
     let tests: Vec<case::complex::herk> = serde_json::from_reader(reader).unwrap();
@@ -811,8 +811,8 @@ fn herk() {
 
 #[test]
 fn her2k() {
-    let mut reader;
-    let mut file;
+    let reader;
+    let file;
     file = File::open("./tests/fixtures/level3/complex/her2k.json").unwrap();
     reader = BufReader::new(file);
     let tests: Vec<case::complex::her2k> = serde_json::from_reader(reader).unwrap();
@@ -961,8 +961,8 @@ fn trsm() {
 
 #[test]
 fn slice() {
-    let mut reader;
-    let mut file;
+    let reader;
+    let file;
     file = File::open("./tests/fixtures/matrix/slice_test.json").unwrap();
     reader = BufReader::new(file);
     let tests: Vec<case::complex::matrix> = serde_json::from_reader(reader).unwrap();
@@ -974,8 +974,8 @@ fn slice() {
 
 #[test]
 fn pack() {
-    let mut reader;
-    let mut file;
+    let reader;
+    let file;
     file = File::open("./tests/fixtures/matrix/pack_test.json").unwrap();
     reader = BufReader::new(file);
     let tests: Vec<case::complex::matrix> = serde_json::from_reader(reader).unwrap();
