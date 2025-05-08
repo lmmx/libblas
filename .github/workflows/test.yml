@@ -13,7 +13,8 @@ jobs:
     env:
       CARGO_PROFILE_TEST_DEBUG: 0 # Disable debug info, which increases cached target size
       RUSTC_WRAPPER: sccache
-      SCCACHE_CACHE_ZSTD_LEVEL: 10
+      SCCACHE_CACHE_ZSTD_LEVEL: 22
+      CACHE_VERSION: 0
 
     steps:
       # ── Check out code ──────────────────────────────────────────────────────
@@ -57,9 +58,9 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ~/.cache/sccache
-          key: ${{ runner.os }}-sccache-${{ hashFiles('**/Cargo.lock') }}
+          key: ${{ runner.os }}-sccache-v-${{ env.CACHE_VERSION }}-${{ hashFiles('**/Cargo.lock') }}
           restore-keys: |
-            ${{ runner.os }}-sccache-
+            ${{ runner.os }}-sccache-${{ env.CACHE_VERSION }}-
 
       # Note: Swatinem/rust-cache was not performant, cargo nextest will compile
 
