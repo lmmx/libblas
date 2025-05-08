@@ -64,7 +64,7 @@ jobs:
           cache-name: cache-sccache
         with:
           path: ~/.cache/sccache
-          key: ${{ runner.os }}-sccache-${{ hashFiles('**/Cargo.toml', '**/*.rs') }}
+          key: ${{ runner.os }}-sccache-${{ hashFiles('**/Cargo.lock', '**/*.rs') }}
           restore-keys: |
             ${{ runner.os }}-sccache-
 
