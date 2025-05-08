@@ -15,8 +15,6 @@ jobs:
       RUSTC_WRAPPER: sccache
       SCCACHE_CACHE_ZSTD_LEVEL: 3
       CACHE_VERSION: 1
-      #SCCACHE_CACHE_ZSTD_LEVEL: 22
-      #CACHE_VERSION: 0
 
     steps:
       # ── Check out code ──────────────────────────────────────────────────────
