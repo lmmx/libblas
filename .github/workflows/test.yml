@@ -13,8 +13,10 @@ jobs:
     env:
       CARGO_PROFILE_TEST_DEBUG: 0 # Disable debug info, which increases cached target size
       RUSTC_WRAPPER: sccache
-      SCCACHE_CACHE_ZSTD_LEVEL: 22
-      CACHE_VERSION: 0
+      SCCACHE_CACHE_ZSTD_LEVEL: 3
+      CACHE_VERSION: 1
+      #SCCACHE_CACHE_ZSTD_LEVEL: 22
+      #CACHE_VERSION: 0
 
     steps:
       # ── Check out code ──────────────────────────────────────────────────────
