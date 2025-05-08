@@ -12,6 +12,8 @@ jobs:
     runs-on: ubuntu-latest
     env:
       CARGO_PROFILE_TEST_DEBUG: 0 # Disable debug info, which increases cached target size
+      RUSTC_WRAPPER: sccache
+
     steps:
       # ── Check out code ──────────────────────────────────────────────────────
       - uses: actions/checkout@v4
@@ -24,7 +26,7 @@ jobs:
         with:
           tool: cargo-nextest,just
 
-      # ── Pixi environment ───────────────────────────────────────────────────
+      # ── Pixi environment ────────────────────────────────────────────────────
       - name: Set up pixi
         uses: prefix-dev/setup-pixi@v0.8.8
         with:
@@ -33,7 +35,7 @@ jobs:
           cache-write: ${{ github.ref == 'refs/heads/master' }}
           log-level: vv
 
-     # ── Cache fixtures ────────────────────────────────────────────────────
+     # ── Cache fixtures ───────────────────────────────────────────────────────
       - name: Cache BLAS conformance fixtures
         id: cache-fixtures
         uses: actions/cache@v4
@@ -55,13 +57,24 @@ jobs:
       #   run: bash scripts/conformance_pixi.sh
       #   shell: pixi run bash -e {0}
 
-      # ── Rust build-cache ────────────────────────────────────────────────────
-      - uses: Swatinem/rust-cache@v2
+      # ── Rust build cache  ───────────────────────────────────────────────────
+      - name: Compiler caches
+        uses: actions/cache@v4
+        env:
+          cache-name: cache-sccache
         with:
-          cache-on-failure: true
-          cache-provider: buildjet
-          key: ${{ hashFiles('**/Cargo.toml') }}
+          path: ~/.cache/sccache
+          key: ${{ runner.os }}-sccache-${{ hashFiles('**/Cargo.toml', '**/*.rs') }}
+          restore-keys: |
+            ${{ runner.os }}-sccache-
 
-      # ── Run tests ──────────────────────────────────────────────────────────
+      # # ── Rust build-cache ────────────────────────────────────────────────────
+      # - uses: Swatinem/rust-cache@v2
+      #   with:
+      #     cache-on-failure: true
+      #     cache-provider: buildjet
+      #     key: ${{ hashFiles('**/Cargo.toml') }}
+
+      # ── Run tests ───────────────────────────────────────────────────────────
       - name: Run tests
         run: cargo nextest run
