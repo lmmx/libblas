@@ -71,6 +71,7 @@ jobs:
       # ── Rust build-cache ────────────────────────────────────────────────────
       - uses: Swatinem/rust-cache@v2
         with:
+          cache-targets: false # I think sccache might overlap?
           cache-on-failure: true
           key: ${{ hashFiles('**/Cargo.toml') }}
 
