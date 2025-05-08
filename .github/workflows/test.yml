@@ -11,7 +11,6 @@ jobs:
   test-pixi:
     runs-on: ubuntu-latest
     env:
-      CARGO_INCREMENTAL: 1
       CARGO_PROFILE_TEST_DEBUG: 0 # Disable debug info, which increases cached target size
       RUSTC_WRAPPER: sccache
 
@@ -69,12 +68,12 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-sccache-
 
-      # # ── Rust build-cache ────────────────────────────────────────────────────
-      # - uses: Swatinem/rust-cache@v2
-      #   with:
-      #     cache-on-failure: true
-      #     cache-provider: buildjet
-      #     key: ${{ hashFiles('**/Cargo.toml') }}
+      # ── Rust build-cache ────────────────────────────────────────────────────
+      - uses: Swatinem/rust-cache@v2
+        with:
+          cache-on-failure: true
+          cache-provider: buildjet
+          key: ${{ hashFiles('**/Cargo.toml') }}
 
       # ── Run tests ───────────────────────────────────────────────────────────
       - name: Run tests
