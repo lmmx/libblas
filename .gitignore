@@ -1,6 +1,5 @@
 /target
 **/*.rs.bk
-Cargo.lock
 /tests/fixtures/level2
 /tests/fixtures/level1
 /tests/fixtures/level3
