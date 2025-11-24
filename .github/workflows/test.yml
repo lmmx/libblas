@@ -18,7 +18,7 @@ jobs:
 
     steps:
       # ── Check out code ──────────────────────────────────────────────────────
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       # ── Rust toolchain & helpers ────────────────────────────────────────────
       - name: Install cargo-nextest
