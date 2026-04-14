@@ -38,7 +38,7 @@ jobs:
      # ── Cache fixtures ───────────────────────────────────────────────────────
       - name: Cache BLAS conformance fixtures
         id: cache-fixtures
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: |
             ./tests/fixtures/level1
@@ -55,7 +55,7 @@ jobs:
 
       # ── Rust build cache  ───────────────────────────────────────────────────
       - name: Compiler caches
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ~/.cache/sccache
           key: ${{ runner.os }}-sccache-v-${{ env.CACHE_VERSION }}-${{ hashFiles('**/Cargo.lock') }}
